@@ -21,4 +21,34 @@ img {
   margin: 0 auto 1rem auto;
 }
 
+a {
+  display: inline-block;
+}
+
+nav {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 4rem;
+  border-top: 2px solid #08192e;
+  margin-top: 2rem;
+  background-color: #f7f3ea;
+}
+
+#add-book {
+  background: url("../media/icons/add_box.svg") no-repeat center center;
+  padding: 1.4rem;
+}
+
+#book {
+  background: url("../media/icons/book.svg") no-repeat center center;
+  padding: 1.1rem;
+}
+
+#profile {
+  background: url("../media/icons/person.svg") no-repeat center center;
+  padding: 0.9rem;
+}
+
 /*# sourceMappingURL=books.css.map */
