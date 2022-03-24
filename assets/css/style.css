@@ -1,0 +1,25 @@
+body {
+  font-family: "Roboto", sans-serif;
+  color: #08192e;
+  background-color: #e5e1da;
+}
+
+a {
+  display: block;
+  color: #08192e;
+  text-decoration: none;
+}
+
+input {
+  display: block;
+  box-sizing: border-box;
+  height: 2rem;
+  color: #08192e;
+  background-color: #f7f3ea;
+  border: 3px solid #08192e;
+}
+input::placeholder {
+  color: #08192e;
+}
+
+/*# sourceMappingURL=style.css.map */

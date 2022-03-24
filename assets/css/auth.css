@@ -1,0 +1,29 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  margin-bottom: 3rem;
+}
+
+input {
+  width: 15rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+}
+input[type=submit] {
+  width: auto;
+  float: right;
+}
+
+a {
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=auth.css.map */

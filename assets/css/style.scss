@@ -1,0 +1,27 @@
+@use "variables";
+
+body {
+  font-family: variables.$font-stack;
+  color: variables.$navy-blue;
+  background-color: variables.$sand;
+}
+
+a {
+  display: block;
+  color: variables.$navy-blue;
+  text-decoration: none;
+}
+
+input {
+  display: block;
+  box-sizing: border-box;
+  height: 2rem;
+  color: variables.$navy-blue;
+  background-color: variables.$sand-accent;
+
+  border: 3px solid variables.$navy-blue;
+
+  &::placeholder {
+    color: variables.$navy-blue;
+  }
+}
