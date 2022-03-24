@@ -1,3 +1,25 @@
 @use "variables";
 
+input {
+  width: 21rem;
+  font-weight: bold;
+  margin: 1.4rem auto 2rem auto;
 
+  &::placeholder {
+    color: variables.$sand-placeholder;
+  }
+}
+
+h1 {
+  max-width: 14rem;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 auto 3rem auto;
+}
+
+img {
+  display: block;
+  max-width: 11rem;
+  height: auto;
+  margin: 0 auto 1rem auto;
+}
