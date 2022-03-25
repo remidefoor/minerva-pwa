@@ -1,0 +1,70 @@
+@use "variables";
+
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+a {
+  line-height: 3.5rem;
+  background: url("../media/icons/arrow_back.svg") no-repeat center center;
+  padding: 0.9rem;
+  margin-left: 0.8rem;
+}
+
+h1 {
+  display: inline-block;
+  flex-grow: 1;
+
+  text-align: center;
+  line-height: 3.5rem;
+  margin: auto;
+}
+
+main {
+  margin: 0 2.5rem;
+}
+
+input {
+  width: 100%;
+  max-width: 21rem;
+  font-weight: bold;
+}
+
+article {
+  margin-bottom: 2rem;
+}
+
+img {
+  margin-bottom: 1rem;
+}
+
+h2 {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+
+p {
+  display: inline-block;
+  margin-bottom: 1.3rem;
+}
+
+ul {
+  list-style: square inside;
+  margin-left: 1rem;
+}
+
+#search-book, #add-book {
+  color: variables.$sand-accent;
+  background-color: variables.$navy-blue;
+}
+
+#isbn {
+  margin-bottom: 1.5rem;
+}
+
+#search-book {
+  margin-bottom: 3rem;
+}

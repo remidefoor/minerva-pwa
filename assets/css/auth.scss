@@ -1,3 +1,7 @@
+html, body, main {
+  height: 100%;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -11,7 +15,6 @@ form {
 
 input {
   width: 15rem;
-  font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 1.2rem;
 
@@ -22,6 +25,7 @@ input {
 }
 
 a {
+  display: block;
   text-align: left;
   font-size: 1.1rem;
   font-weight: bold;

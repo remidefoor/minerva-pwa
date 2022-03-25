@@ -4,10 +4,20 @@ body {
   background-color: #e5e1da;
 }
 
+h1, h2 {
+  font-weight: bold;
+}
+
 a {
-  display: block;
+  display: inline-block;
   color: #08192e;
   text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 11rem;
+  height: auto;
 }
 
 input {
@@ -17,6 +27,7 @@ input {
   color: #08192e;
   background-color: #f7f3ea;
   border: 3px solid #08192e;
+  outline: none;
 }
 input::placeholder {
   color: #08192e;
