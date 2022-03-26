@@ -33,6 +33,9 @@ input[type=submit] {
   width: auto;
   float: right;
 }
+input.error {
+  border-color: #ff0000;
+}
 
 a {
   display: block;

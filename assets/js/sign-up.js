@@ -6,16 +6,14 @@ function init(evt) {
     document.querySelector('form').addEventListener('submit', createUser);
 }
 
+function stylePwdFields() {
+    document.querySelector('#password').classList.add('error');
+    document.querySelector('#confirmed-password').classList.add('error');
+}
+
 function resetPwdFields() {
-    const errColor = '#ff0000'
-
-    const $pwd = document.querySelector('#password');
-    $pwd.value = '';
-    $pwd.style.borderColor = errColor;
-
-    const $confirmedPwd = document.querySelector('#confirmed-password');
-    $confirmedPwd.value = '';
-    $confirmedPwd.style.borderColor = errColor;
+    document.querySelector('#password').value = '';
+    document.querySelector('#confirmed-password').value = '';
 }
 
 function displayErrs(errs) {
@@ -26,6 +24,7 @@ function displayErrs(errs) {
         $errs.insertAdjacentHTML('beforeend', `<li>${err}</li>`);
     });
 
+    stylePwdFields();
     resetPwdFields();
 }
 
