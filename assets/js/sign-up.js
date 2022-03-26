@@ -6,11 +6,6 @@ function init(evt) {
     document.querySelector('form').addEventListener('submit', createUser);
 }
 
-function stylePwdFields() {
-    document.querySelector('#password').classList.add('error');
-    document.querySelector('#confirmed-password').classList.add('error');
-}
-
 function resetPwdFields() {
     document.querySelector('#password').value = '';
     document.querySelector('#confirmed-password').value = '';
@@ -24,7 +19,6 @@ function displayErrs(errs) {
         $errs.insertAdjacentHTML('beforeend', `<li>${err}</li>`);
     });
 
-    stylePwdFields();
     resetPwdFields();
 }
 
@@ -34,9 +28,37 @@ function pwdsAreEqual() {
     return $pwd === $confirmedPwd;
 }
 
-function createUser(evt) {
+function getPostBody() {
+    const $email = document.querySelector('#email').value;
+    const $pwd = document.querySelector('#password').value;
+    return {
+        email: $email,
+        password: $pwd
+    }
+}
+
+async function postUser() {
+    return await fetch(`${config.baseUrl}/users`, {
+        headers: {
+            'content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(getPostBody())
+    });
+}
+
+async function createUser(evt) {
     evt.preventDefault();
     if (pwdsAreEqual()) {
-
+        const res = await postUser();
+        const json = await res.json();
+        if (res.status === 201) {
+            console.log(json.id);
+            window.location.href = 'books.html';
+        } else if (res.status === 400) {
+            displayErrs(json.errors);
+        }
+    } else {
+        displayErrs(['The provided passwords did not match.']);
     }
 }

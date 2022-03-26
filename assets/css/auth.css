@@ -11,7 +11,7 @@ main {
 
 #errors {
   max-width: 15rem;
-  color: #ff0000;
+  color: #c8104a;
   list-style: square inside;
   margin-bottom: 1.5rem;
 }
@@ -32,9 +32,6 @@ input {
 input[type=submit] {
   width: auto;
   float: right;
-}
-input.error {
-  border-color: #ff0000;
 }
 
 a {

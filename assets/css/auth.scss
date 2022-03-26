@@ -36,10 +36,6 @@ input {
     width: auto;
     float: right;
   }
-
-  &.error {
-    border-color: variables.$red;
-  }
 }
 
 a {

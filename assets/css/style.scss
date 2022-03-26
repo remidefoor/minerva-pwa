@@ -35,6 +35,10 @@ input {
   &::placeholder {
     color: variables.$navy-blue;
   }
+
+  &[type="submit"]:focus {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  }
 }
 
 #back {
