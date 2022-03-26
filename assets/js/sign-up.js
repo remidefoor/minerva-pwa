@@ -2,7 +2,14 @@
 
 document.addEventListener('DOMContentLoaded', init);
 
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+    }
+}
+
 function init(evt) {
+    registerServiceWorker
     document.querySelector('form').addEventListener('submit', createUser);
 }
 
@@ -53,7 +60,7 @@ async function createUser(evt) {
         const res = await postUser();
         const json = await res.json();
         if (res.status === 201) {
-            console.log(json.id);
+            await setUidInLocalStorage(json.id);
             window.location.href = 'books.html';
         } else if (res.status === 400) {
             displayErrs(json.errors);
