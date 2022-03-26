@@ -1,3 +1,102 @@
 @use "variables";
 
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 5rem;
+  position: fixed;
+  top: 0;
 
+  background-color: variables.$sand-accent;
+  border-bottom: 3px solid variables.$navy-blue;
+}
+
+h1 {
+  flex-grow: 1;
+  align-self: center;
+  line-height: 1.5rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+input:not([type="text"]) {
+  // remove styling
+  display: inline;
+  box-sizing: content-box;
+  height: auto;
+  background-color: transparent;
+  border: none;
+}
+
+main {
+  margin-top: 7rem;
+}
+
+#notes {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: end;
+  margin-bottom: 5rem;
+}
+
+p {
+  width: fit-content;
+  line-height: 1.4rem;
+  text-align: right;
+  color: variables.$white;
+  background-color: variables.$navy-blue-accent;
+
+  padding: 0.7rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+img {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 4rem;
+
+  background-color: variables.$sand;
+}
+
+#more {
+  background: url("../media/icons/more-vert.svg") no-repeat center center;
+  padding: 0.4rem;
+  margin: 0.8rem;
+}
+
+#camera, #add-note {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 3px solid variables.$navy-blue;
+  padding: 0.7rem;
+  margin: 0 0.3rem;
+}
+
+#camera {
+  background: url("../media/icons/photo_camera.svg") no-repeat center center;
+}
+
+#note {
+  flex-grow: 1;
+  height: 2.9rem;
+
+  &::placeholder {
+    color: variables.$sand-placeholder;
+    font-weight: bold;
+  }
+}
+
+#add-note {
+  background: url("../media/icons/send.svg") no-repeat center center;
+}
