@@ -1,3 +1,5 @@
+@use "variables";
+
 html, body, main {
   height: 100%;
 }
@@ -7,6 +9,18 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#errors {
+  max-width: 15rem;
+  color: variables.$red;
+  list-style: square inside;
+
+  margin-bottom: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
 }
 
 form {

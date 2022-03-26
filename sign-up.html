@@ -15,7 +15,10 @@
 </head>
 <body>
     <main>
-        <form action="#">
+        <ul id="errors">
+        </ul>
+
+        <form action="https://laravel.minerva.com/api/users" method="post">
             <input type="email" id="email" name="email" required autofocus placeholder="Email" />
             <input type="password" id="password" name="password" required placeholder="Password" />
             <input type="password" id="confirmed-password" required placeholder="Confirm password" />

@@ -38,6 +38,6 @@ function pwdsAreEqual() {
 function createUser(evt) {
     evt.preventDefault();
     if (pwdsAreEqual()) {
-        
+
     }
 }
