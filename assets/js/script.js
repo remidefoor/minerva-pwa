@@ -1,7 +1,9 @@
 'use strict';
 
 const config = {
-    baseUrl: 'http://laravel.minerva.com/api'
+    minervaBaseUrl: 'http://laravel.minerva.com/api',
+    googleBooksApikey: 'AIzaSyDZIHMQYqgI6neWsQbQ5AdbTbfKmk5DuzM',
+    googleBooksBaseUrl: 'https://www.googleapis.com/books/v1/volumes?q=isbn:'
 }
 
 const store = localforage.createInstance({
@@ -9,10 +11,10 @@ const store = localforage.createInstance({
     version: 1
 });
 
-async function getUidFromLocalForage() {
-    return await store.getItem('uid');
+function getUidFromLocalForage() {
+    return store.getItem('uid');
 }
 
 async function setUidInLocalStorage(uid) {
-    await store.setItem('uid', uid);
+    store.setItem('uid', uid);
 }

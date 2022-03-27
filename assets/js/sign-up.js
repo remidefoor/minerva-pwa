@@ -44,8 +44,8 @@ function getPostBody() {
     }
 }
 
-async function postUser() {
-    return await fetch(`${config.baseUrl}/users`, {
+function postUser() {
+    return fetch(`${config.minervaBaseUrl}/users`, {
         headers: {
             'content-type': 'application/json'
         },
@@ -58,12 +58,12 @@ async function createUser(evt) {
     evt.preventDefault();
     if (pwdsAreEqual()) {
         const res = await postUser();
-        const json = await res.json();
+        const userInfo = await res.json();
         if (res.status === 201) {
-            await setUidInLocalStorage(json.id);
+            await setUidInLocalStorage(userInfo.id);
             window.location.href = 'books.html';
         } else if (res.status === 400) {
-            displayErrs(json.errors);
+            displayErrs(userInfo.errors);
         }
     } else {
         displayErrs(['The provided passwords did not match.']);
