@@ -1,9 +1,11 @@
 header {
   display: flex;
   flex-flow: row nowrap;
-  height: 5rem;
+  justify-content: space-between;
   position: fixed;
   top: 0;
+  width: 100%;
+  height: 5rem;
   background-color: #f7f3ea;
   border-bottom: 3px solid #08192e;
 }
@@ -83,6 +85,7 @@ form {
 #note {
   flex-grow: 1;
   height: 2.9rem;
+  margin-left: 0.3rem;
 }
 #note::placeholder {
   color: #C6C0B6;

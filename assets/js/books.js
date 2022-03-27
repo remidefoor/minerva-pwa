@@ -12,12 +12,12 @@ async function getBooks() {
     return fetch(`${config.minervaBaseUrl}/users/${uid}/books`);
 }
 
-function getBookNode(bookInfo, isbn) {
+function getBookNode(volumeInfo, isbn) {
     const article = document.createElement('article');
     article.dataset.isbn = isbn;
     const innerHtml =  `
-        <img src="${bookInfo.imageLinks.thumbnail}" alt="${bookInfo.title} book cover" />
-        <h1>${bookInfo.title}</h1>
+        <img src="${volumeInfo.imageLinks.thumbnail}" alt="${volumeInfo.title} book cover" />
+        <h1>${volumeInfo.title}</h1>
     `;
     article.innerHTML = innerHtml;
     return article;
@@ -27,8 +27,8 @@ async function getBookNodes(books) {
     const bookNodes = [];
     for (const book of books) {
         const bookVolume = await (await getBookVolume(book.ISBN)).json();
-        const bookInfo = bookVolume.items[0].volumeInfo;
-        bookNodes.push(getBookNode(bookInfo, book.ISBN));
+        const volumeInfo = bookVolume.items[0].volumeInfo;
+        bookNodes.push(getBookNode(volumeInfo, book.ISBN));
     }
     return bookNodes;
 }

@@ -3,9 +3,12 @@
 header {
   display: flex;
   flex-flow: row nowrap;
-  height: 5rem;
+  justify-content: space-between;
+
   position: fixed;
   top: 0;
+  width: 100%;
+  height: 5rem;
 
   background-color: variables.$sand-accent;
   border-bottom: 3px solid variables.$navy-blue;
@@ -90,6 +93,7 @@ form {
 #note {
   flex-grow: 1;
   height: 2.9rem;
+  margin-left: 0.3rem;  // TODO remove when displaying camera button
 
   &::placeholder {
     color: variables.$sand-placeholder;
