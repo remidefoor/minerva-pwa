@@ -2,8 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', init);
 
-function init(evt) {
-    displayBooks();
+async function init(evt) {
+    await displayBooks();
     document.querySelector('#search-bar').addEventListener('keyup', filterBooks);
 }
 
@@ -12,13 +12,9 @@ async function getBooks() {
     return fetch(`${config.minervaBaseUrl}/users/${uid}/books`);
 }
 
-function getBookVolume(isbn) {
-    const url = `${config.googleBooksBaseUrl}${isbn}`;  // &key=${config.googleBooksApikey}
-    return fetch(url);
-}
-
-function getBookNode(bookInfo) {
+function getBookNode(bookInfo, isbn) {
     const article = document.createElement('article');
+    article.dataset.isbn = isbn;
     const innerHtml =  `
         <img src="${bookInfo.imageLinks.thumbnail}" alt="${bookInfo.title} book cover" />
         <h1>${bookInfo.title}</h1>
@@ -32,7 +28,7 @@ async function getBookNodes(books) {
     for (const book of books) {
         const bookVolume = await (await getBookVolume(book.ISBN)).json();
         const bookInfo = bookVolume.items[0].volumeInfo;
-        bookNodes.push(getBookNode(bookInfo));
+        bookNodes.push(getBookNode(bookInfo, book.ISBN));
     }
     return bookNodes;
 }
@@ -46,11 +42,14 @@ function getSortedBookNodes(bookNodes) {
 }
 
 async function displayBooks() {
-    const $bookContainer = document.querySelector('#books');
-    const books = await (await getBooks()).json();
-    const sortedBookNodes = getSortedBookNodes(await getBookNodes(books));
-    for (const bookNode of sortedBookNodes) {
-        $bookContainer.appendChild(bookNode);
+    if (await getUidFromLocalForage()) {
+        const $bookContainer = document.querySelector('#books');
+        const books = await (await getBooks()).json();
+        const sortedBookNodes = getSortedBookNodes(await getBookNodes(books));
+        for (const bookNode of sortedBookNodes) {
+            $bookContainer.appendChild(bookNode);
+        }
+        document.querySelector('img').addEventListener('click', navigateToNotesPage)
     }
 }
 
@@ -65,4 +64,10 @@ function filterBooks(evt) {
             book.classList.add('hidden');
         }
     }
+}
+
+function navigateToNotesPage(evt) {
+    const isbn = evt.currentTarget.parentElement.dataset.isbn;
+    if (localStorage) localStorage.setItem('isbn', isbn);
+    window.location.href = 'notes.html';
 }

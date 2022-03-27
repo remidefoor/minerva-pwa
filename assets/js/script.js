@@ -18,3 +18,8 @@ function getUidFromLocalForage() {
 async function setUidInLocalStorage(uid) {
     store.setItem('uid', uid);
 }
+
+function getBookVolume(isbn) {
+    const url = `${config.googleBooksBaseUrl}${isbn}`;  // &key=${config.googleBooksApikey}
+    return fetch(url);
+}
