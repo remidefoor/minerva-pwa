@@ -42,4 +42,8 @@ input[type=submit]:focus {
   margin-left: 0.8rem;
 }
 
+.hidden {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */

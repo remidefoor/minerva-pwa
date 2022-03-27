@@ -55,5 +55,14 @@ async function displayBooks() {
 }
 
 function filterBooks(evt) {
-
+    const $searchTerm = document.querySelector('#search-bar').value.toLowerCase();
+    const $books = document.querySelectorAll('article');
+    for (const book of $books) {
+        const title = book.lastElementChild.innerHTML.toLowerCase();
+        if (title.match($searchTerm)) {
+            book.classList.remove('hidden');
+        } else {
+            book.classList.add('hidden');
+        }
+    }
 }
