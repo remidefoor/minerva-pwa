@@ -2,8 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', init);
 
-async function init(evt) {
-    await displayBooks();
+function init(evt) {
+    displayBooks();
     document.querySelector('#search-bar').addEventListener('keyup', filterBooks);
 }
 
@@ -49,7 +49,9 @@ async function displayBooks() {
         for (const bookNode of sortedBookNodes) {
             $bookContainer.appendChild(bookNode);
         }
-        document.querySelector('img').addEventListener('click', navigateToNotesPage)
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('click', navigateToNotesPage);
+        });
     }
 }
 
