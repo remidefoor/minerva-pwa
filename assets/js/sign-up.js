@@ -60,7 +60,7 @@ async function createUser(evt) {
         const res = await postUser();
         const userInfo = await res.json();
         if (res.status === 201) {
-            await setUidInLocalStorage(userInfo.id);
+            await setUidInLocalForage(userInfo.id);
             window.location.href = 'books.html';
         } else if (res.status === 400) {
             displayErrs(userInfo.errors);

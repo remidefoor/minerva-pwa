@@ -36,7 +36,7 @@ nav {
   border-top: 2px solid #08192e;
 }
 
-#add-book {
+#add-button {
   position: fixed;
   bottom: 5rem;
   right: 1rem;

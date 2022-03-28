@@ -2,8 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', init);
 
-function init(evt) {
-    displayBooks();
+async function init(evt) {
+    await displayBooks();
     document.querySelector('#search-bar').addEventListener('keyup', filterBooks);
 }
 

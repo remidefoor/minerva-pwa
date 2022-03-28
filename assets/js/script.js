@@ -15,7 +15,7 @@ function getUidFromLocalForage() {
     return store.getItem('uid');
 }
 
-async function setUidInLocalStorage(uid) {
+async function setUidInLocalForage(uid) {
     store.setItem('uid', uid);
 }
 

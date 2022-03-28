@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/add-book.css">
+    <script src="assets/js/lib/localforage.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/add-book.js"></script>
 </head>
 <body>
     <header>
@@ -19,24 +22,11 @@
     </header>
 
     <main>
-        <form action="" method="post">
+        <form action="#" method="post">
             <input type="text" id="isbn" name="isbn" required autofocus placeholder="ISBN" />
-            <input type="button" id="search-book" value="Search" />
+            <input type="button" id="search-button" value="Search" />
 
-            <article id="book">
-                <img src="assets/media/images/harry_potter_and_the_prisoner_of_azkaban_book_cover.jpg" alt="Harry Potter and the Prisoner of Azkaban book cover" />
-
-                <h2>Title:</h2>
-                <p>Harry Potter and the Prisoner of Azkaban</p>
-
-                <h2>Authors:</h2>
-                <ul>
-                    <li>J. K. Rowling</li>
-                    <li>Rowling (J. K.)</li>
-                </ul>
-            </article>
-
-            <input type="submit" id="add-book" value="Add" />
+            <input class="hidden" type="submit" id="add-button" value="Add" />
         </form>
     </main>
 </body>

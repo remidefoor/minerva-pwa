@@ -2,8 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', init);
 
-function init(evt) {
-    displayNotes();
+async function init(evt) {
+    await displayNotes();
     document.querySelector('form').addEventListener('submit', addNote);
 }
 
@@ -31,7 +31,7 @@ function createNoteNode(noteId, note) {
 }
 
 async function displayNotes() {
-    if (pageIsFunctional()) {
+    if (await pageIsFunctional()) {
         const uid = await getUidFromLocalForage();
         const isbn = localStorage.getItem('isbn');
         displayBookTitle(isbn);

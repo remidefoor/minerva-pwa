@@ -50,7 +50,7 @@ ul {
   line-height: 3.5rem;
 }
 
-#search-book, #add-book {
+#search-button, #add-button {
   color: #f7f3ea;
   background-color: #08192e;
 }
@@ -59,7 +59,7 @@ ul {
   margin-bottom: 1.5rem;
 }
 
-#search-book {
+#search-button {
   margin-bottom: 3rem;
 }
 

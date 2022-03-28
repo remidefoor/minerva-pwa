@@ -4,6 +4,7 @@
 - profile page
 - book info page
 - add photos to notes
-- display message when page is not functional
 - barcode scanner
 - polish styling
+- search book on enter
+- display message when book was not found

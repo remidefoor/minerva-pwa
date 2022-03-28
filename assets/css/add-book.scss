@@ -53,7 +53,7 @@ ul {
   line-height: 3.5rem;
 }
 
-#search-book, #add-book {
+#search-button, #add-button {
   color: variables.$sand-accent;
   background-color: variables.$navy-blue;
 }
@@ -62,6 +62,6 @@ ul {
   margin-bottom: 1.5rem;
 }
 
-#search-book {
+#search-button {
   margin-bottom: 3rem;
 }
