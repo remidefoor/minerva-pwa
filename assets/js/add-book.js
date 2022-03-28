@@ -7,22 +7,34 @@ async function init(evt) {
         window.location.href = 'index.html';
     }
     document.querySelector('#search-button').addEventListener('click', searchBook);
-    document.querySelector('form').addEventListener('submit', addBook);
+    document.querySelector('#add-button').addEventListener('click', addBook);
 }
 
-async function pageIsFunctional() {
-    return await getUidFromLocalForage();
+function pageIsFunctional() {
+    return getUidFromLocalForage();
 }
 
-function deleteDynamicHtml() {
+function isValidIsbn(isbn) {
+    if (isbn.length !== 10 && isbn.length !== 13) return false;
+    for (const char of isbn) {
+        if (isNaN(char)) return false;
+    }
+    return true;
+}
+
+function removeBook() {
     const $book = document.querySelector('#book');
     if ($book) $book.remove();
+}
+
+function removeErr() {
     const $err = document.querySelector('#error');
     if ($err) $err.remove();
 }
 
 function setPage(bookWasFound) {
-    deleteDynamicHtml();
+    removeErr();
+    removeBook();
     if (bookWasFound) {
         document.querySelector('#add-button').classList.remove('hidden');
     } else {
@@ -59,13 +71,33 @@ function displaySearchResult(volumeInfo) {
     document.querySelector('#search-button').insertAdjacentElement('afterend', getBookNode(volumeInfo));
 }
 
+function displayErr(errMsg, afterAdd) {
+    const errHtml = `<p id="error">${errMsg}</p>`;
+    if (afterAdd) {
+        removeErr();
+        document.querySelector('#add-button').insertAdjacentHTML('afterend', errHtml);
+    } else {
+        document.querySelector('#search-button').insertAdjacentHTML('afterend', errHtml);
+    }
+}
+
+function handleSearchErr(errMsg) {
+    setPage(false);
+    displayErr(errMsg, false);
+}
+
 async function searchBook(evt) {
     const $isbn = document.querySelector('#isbn').value;
-    const bookVolume = await (await getBookVolume($isbn)).json();
-    if (bookVolume.totalItems > 0) {
-        displaySearchResult(bookVolume.items[0].volumeInfo)
+    if (isValidIsbn($isbn)) {
+        const bookVolume = await (await getBookVolume($isbn)).json();
+        if (bookVolume.totalItems > 0) {
+            displaySearchResult(bookVolume.items[0].volumeInfo)
+        } else {
+            handleSearchErr('The requested book was not found.');
+        }
     } else {
-        setPage(false);
+        const errMsg = 'The provided ISBN is invalid. A valid ISBN is a number consisting of 10 or 13 digits.';
+        handleSearchErr(errMsg);
     }
 }
 
@@ -88,15 +120,6 @@ async function addBook(evt) {
         window.location.href = 'books.html'
     } else if (res.status === 409) {
         const err = await res.json();
-        displayErrMsg(err.message);
-    }
-}
-
-function displayErrMsg(errMsg, afterSearch) {
-    const errHtml = `<p id="error">${errMsg}</p>`;
-    if (afterSearch) {
-        document.querySelector('#search-button').insertAdjacentHTML('afterend', errHtml);
-    } else {
-        document.querySelector('#add-button').insertAdjacentHTML('afterend', errHtml);
+        displayErr(err.message, true);
     }
 }
