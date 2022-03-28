@@ -6,7 +6,8 @@ async function init(evt) {
     if (! await pageIsFunctional()) {
         window.location.href = 'index.html';
     }
-    document.querySelector('#search-button').addEventListener('click', searchBook)
+    document.querySelector('#search-button').addEventListener('click', searchBook);
+    document.querySelector('form').addEventListener('submit', addBook);
 }
 
 async function pageIsFunctional() {
@@ -67,5 +68,27 @@ async function searchBook(evt) {
         displaySearchResult(bookVolume.items[0].volumeInfo)
     } else {
         setPage(false);
+    }
+}
+
+async function postBook() {
+    const uid = await getUidFromLocalForage();
+    const $isbn = document.querySelector('#isbn').value;
+    return fetch(`${config.minervaBaseUrl}/users/${uid}/books`, {
+        headers: {
+            'content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ isbn: $isbn })
+    });
+}
+
+async function addBook(evt) {
+    evt.preventDefault();
+    const res = await postBook();
+    if (res.status === 201) {
+        window.location.href = 'books.html'
+    } else if (res.status = 409) {
+        
     }
 }
