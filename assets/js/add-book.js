@@ -3,15 +3,13 @@
 document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
-    if (! await pageIsFunctional()) {
-        window.location.href = 'index.html';
-    }
+    if (!(await pageIsFunctional())) window.location.href = 'index.html'
     document.querySelector('#search-button').addEventListener('click', searchBook);
     document.querySelector('#add-button').addEventListener('click', addBook);
 }
 
-function pageIsFunctional() {
-    return getUidFromLocalForage();
+async function pageIsFunctional() {
+    return await getUidFromLocalForage() !== null;
 }
 
 function isValidIsbn(isbn) {
@@ -115,11 +113,13 @@ async function postBook() {
 
 async function addBook(evt) {
     evt.preventDefault();
-    const res = await postBook();
-    if (res.status === 201) {
-        window.location.href = 'books.html'
-    } else if (res.status === 409) {
-        const err = await res.json();
-        displayErr(err.message, true);
+    if (await pageIsFunctional()) {
+        const res = await postBook();
+        if (res.status === 201) {
+            window.location.href = 'books.html'
+        } else if (res.status === 409) {
+            const err = await res.json();
+            displayErr(err.message, true);
+        }
     }
 }

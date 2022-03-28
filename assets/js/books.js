@@ -3,8 +3,13 @@
 document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
+    if (!(await pageIsFunctional())) window.location.href = 'index.html'
     await displayBooks();
     document.querySelector('#search-bar').addEventListener('keyup', filterBooks);
+}
+
+async function pageIsFunctional() {
+    return await getUidFromLocalForage() !== null;
 }
 
 async function getBooks() {
@@ -42,7 +47,7 @@ function getSortedBookNodes(bookNodes) {
 }
 
 async function displayBooks() {
-    if (await getUidFromLocalForage()) {
+    if (await pageIsFunctional) {
         const $bookContainer = document.querySelector('#books');
         const books = await (await getBooks()).json();
         const sortedBookNodes = getSortedBookNodes(await getBookNodes(books));

@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
+    if (!(await pageIsFunctional())) window.location.href = 'index.html'
     await displayNotes();
     document.querySelector('form').addEventListener('submit', addNote);
 }
@@ -55,7 +56,7 @@ function postNote(uid, isbn, note) {
 
 async function addNote(evt) {
     evt.preventDefault();
-    if (pageIsFunctional()) {
+    if (await pageIsFunctional()) {
         const $note = document.querySelector('#note');
         const uid = await getUidFromLocalForage()
         const isbn = localStorage.getItem('isbn');
