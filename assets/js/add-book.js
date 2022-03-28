@@ -14,21 +14,19 @@ async function pageIsFunctional() {
     return await getUidFromLocalForage();
 }
 
-function deleteSearchResult() {
+function deleteDynamicHtml() {
     const $book = document.querySelector('#book');
     if ($book) $book.remove();
+    const $err = document.querySelector('#error');
+    if ($err) $err.remove();
 }
 
 function setPage(bookWasFound) {
-    deleteSearchResult();
-    const $isbn = document.querySelector('#isbn');
-    const $addButton = document.querySelector('#add-button');
+    deleteDynamicHtml();
     if (bookWasFound) {
-        $isbn.value = '';
-        $addButton.classList.remove('hidden');
+        document.querySelector('#add-button').classList.remove('hidden');
     } else {
-        $isbn.focus();
-        $addButton.classList.add('hidden');        
+        document.querySelector('#add-button').classList.add('hidden');        
     }
 }
 
@@ -88,7 +86,17 @@ async function addBook(evt) {
     const res = await postBook();
     if (res.status === 201) {
         window.location.href = 'books.html'
-    } else if (res.status = 409) {
-        
+    } else if (res.status === 409) {
+        const err = await res.json();
+        displayErrMsg(err.message);
+    }
+}
+
+function displayErrMsg(errMsg, afterSearch) {
+    const errHtml = `<p id="error">${errMsg}</p>`;
+    if (afterSearch) {
+        document.querySelector('#search-button').insertAdjacentHTML('afterend', errHtml);
+    } else {
+        document.querySelector('#add-button').insertAdjacentHTML('afterend', errHtml);
     }
 }

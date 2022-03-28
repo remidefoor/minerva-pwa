@@ -59,8 +59,13 @@ ul {
   margin-bottom: 1.5rem;
 }
 
-#search-button {
+#search-button, #add-button {
   margin-bottom: 3rem;
+}
+
+#error {
+  text-align: center;
+  color: #c8104a;
 }
 
 /*# sourceMappingURL=add-book.css.map */

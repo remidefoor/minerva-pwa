@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
     await displayBooks();
-    document.querySelector('#search-bar').addEventListener('keyup', filterBooks);
+    document.querySelector('#search-button-bar').addEventListener('keyup', filterBooks);
 }
 
 async function getBooks() {
@@ -56,7 +56,7 @@ async function displayBooks() {
 }
 
 function filterBooks(evt) {
-    const $searchTerm = document.querySelector('#search-bar').value.toLowerCase();
+    const $searchTerm = document.querySelector('#search-button-bar').value.toLowerCase();
     const $books = document.querySelectorAll('article');
     for (const book of $books) {
         const title = book.lastElementChild.innerHTML.toLowerCase();
