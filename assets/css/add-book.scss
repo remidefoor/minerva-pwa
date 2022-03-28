@@ -35,8 +35,11 @@ img {
 }
 
 h2 {
-  display: inline-block;
   margin-bottom: 0.4rem;
+
+  &:first-of-type {
+    display: inline-block;
+  }
 }
 
 p {
@@ -67,6 +70,7 @@ ul {
 }
 
 #error {
+  display: block;
   text-align: center;
   color: variables.$error;
 }

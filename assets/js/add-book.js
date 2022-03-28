@@ -54,7 +54,7 @@ function getBookNode(volumeInfo) {
     const article = document.createElement('article');
     article.id = 'book'
     const innerHTML = `
-        <img src="${volumeInfo.imageLinks.thumbnail}" alt="${volumeInfo.title} book cover" />
+        ${getImgHtml(volumeInfo)}
 
         <h2>Title:</h2>
         <p>${volumeInfo.title}</p>

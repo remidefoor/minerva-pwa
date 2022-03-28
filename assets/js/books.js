@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
     await displayBooks();
-    document.querySelector('#search-button-bar').addEventListener('keyup', filterBooks);
+    document.querySelector('#search-bar').addEventListener('keyup', filterBooks);
 }
 
 async function getBooks() {
@@ -16,7 +16,7 @@ function getBookNode(volumeInfo, isbn) {
     const article = document.createElement('article');
     article.dataset.isbn = isbn;
     const innerHtml =  `
-        <img src="${volumeInfo.imageLinks.thumbnail}" alt="${volumeInfo.title} book cover" />
+        ${getImgHtml(volumeInfo)}
         <h1>${volumeInfo.title}</h1>
     `;
     article.innerHTML = innerHtml;
