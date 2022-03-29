@@ -1,0 +1,26 @@
+{
+    "name": "Minerva",
+    "short_name": "Minerva",
+    "theme_color": "#e5e1da",
+    "background_color": "#08192e",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "/pwa-icons/logo-dark-128x128",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "/pwa-icons/logo-dark-256x256",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/pwa-icons/logo-dark-512x512",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+  }
