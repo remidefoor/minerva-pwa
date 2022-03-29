@@ -64,6 +64,8 @@ async function createUser(evt) {
             window.location.href = 'books.html';
         } else if (res.status === 400) {
             displayErrs(userInfo.errors);
+        } else if (res.status === 409) {
+            displayErrs([userInfo.message]);
         }
     } else {
         displayErrs(['The provided passwords did not match.']);
