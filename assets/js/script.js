@@ -9,6 +9,7 @@ const config = {
 
 // reusable functions
 
+// local forage
 const store = localforage.createInstance({
     name: 'minerva',
     version: 1
@@ -22,6 +23,29 @@ async function setUidInLocalForage(uid) {
     store.setItem('uid', uid);
 }
 
+// auth
+function getUserPostBody() {
+    return {
+        email: document.querySelector('#email').value,
+        password: document.querySelector('#password').value
+    }
+}
+
+async function processUid(uid) {
+    await setUidInLocalForage(uid);
+    setTimeout(() => window.location.href = 'books.html', 1000);  // TODO find cleaner solution
+}
+
+function displayAuthErrs(errs) {
+    const $errs = document.querySelector('#errors');
+    $errs.innerHTML = '';
+
+    errs.forEach(err => {
+        $errs.insertAdjacentHTML('beforeend', `<li>${err}</li>`);
+    });
+}
+
+// books
 function getBookVolume(isbn) {
     const url = `${config.googleBooksBaseUrl}${isbn}`;  // &key=${config.googleBooksApikey}
     return fetch(url);
