@@ -61,7 +61,7 @@ async function displayBooks() {
 }
 
 function filterBooks(evt) {
-    const $searchTerm = document.querySelector('#search-button-bar').value.toLowerCase();
+    const $searchTerm = document.querySelector('#search-bar').value.toLowerCase();
     const $books = document.querySelectorAll('article');
     for (const book of $books) {
         const title = book.lastElementChild.innerHTML.toLowerCase();

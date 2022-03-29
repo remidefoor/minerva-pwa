@@ -2,6 +2,15 @@
 
 const CACHE_NAME = 'minerva-v1';
 
+self.addEventListener('install', evt => {
+    evt.waitUntil(cacheUrls());
+});
+
+async function cacheUrls() {
+    const cache = await caches.open(CACHE_NAME);
+    return cache.addAll(getCachedUrls());
+}
+
 function getCachedUrls() {
     const GENERAL_URLS = [
         '/',
@@ -21,7 +30,6 @@ function getCachedUrls() {
     ];
     const SIGN_UP_URLS = [
         'sign-up.html',
-        '/assets/css/auth.css',
         '/assets/js/sign-up.js'
     ];
     const BOOKS_URLS = [
@@ -61,4 +69,9 @@ function getCachedUrls() {
     ];
 }
 
-console.log(getCachedUrls());
+self.addEventListener('fetch', evt => {  // TODO refactor with async await
+    evt.respondWith(fetch(evt.request).catch(() => {
+            return caches.open(CACHE_NAME).then(cache => cache.match(evt.request));
+        })
+    ); 
+});
