@@ -48,14 +48,14 @@ function getCachedUrls() {
         '/assets/js/notes.js'
     ];
     const MEDIA_URLS = [
-        '/assets/media/icons/add_box.svg',
-        '/assets/media/icons/arrow_back.svg',
+        '/assets/media/icons/add-box.svg',
+        '/assets/media/icons/arrow-back.svg',
         '/assets/media/icons/book.svg',
         '/assets/media/icons/more-vert.svg',
         '/assets/media/icons/person.svg',
-        '/assets/media/icons/photo_camera.svg',
+        '/assets/media/icons/photo-camera.svg',
         '/assets/media/icons/send.svg',
-        '/assets/media/images/blank_book_cover.jpg'
+        '/assets/media/images/blank-book-cover.jpg'
     ];
     return [
         ...GENERAL_URLS,
@@ -73,5 +73,5 @@ self.addEventListener('fetch', evt => {  // TODO refactor with async await
     evt.respondWith(fetch(evt.request).catch(() => {
             return caches.open(CACHE_NAME).then(cache => cache.match(evt.request));
         })
-    ); 
+    );
 });

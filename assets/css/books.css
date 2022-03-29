@@ -40,7 +40,7 @@ nav {
   position: fixed;
   bottom: 5rem;
   right: 1rem;
-  background: url("../media/icons/add_box.svg") no-repeat center center;
+  background: url("../media/icons/add-box.svg") no-repeat center center;
   padding: 1.4rem;
 }
 

@@ -61,7 +61,7 @@ function getBookVolume(isbn) {
 }
 
 function getImgHtml(volumeInfo) {
-    let imgSrc = 'assets/media/images/blank_book_cover.jpg';
+    let imgSrc = 'assets/media/images/blank-book-cover.jpg';
     if (volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail) {
         imgSrc = volumeInfo.imageLinks.thumbnail;
     }
