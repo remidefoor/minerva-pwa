@@ -3,7 +3,8 @@
 document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
-    if (!(await pageIsFunctional())) window.location.href = 'index.html'
+    await redirectWhenLoggedOff();
+    if (!(await pageIsFunctional())) window.location.href = 'books.html'
     await displayNotes();
     document.querySelector('form').addEventListener('submit', addNote);
 }

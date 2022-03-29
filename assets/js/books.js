@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
-    if (!(await pageIsFunctional())) window.location.href = 'index.html'
+    await redirectWhenLoggedOff();
     await displayBooks();
     document.querySelector('#search-bar').addEventListener('keyup', filterBooks);
 }

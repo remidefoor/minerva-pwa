@@ -9,6 +9,15 @@ const config = {
 
 // reusable functions
 
+// navigation
+async function redirectWhenLoggedIn() {
+    if (await getUidFromLocalForage()) window.location.href = 'books.html';
+}
+
+async function redirectWhenLoggedOff() {
+    if (await getUidFromLocalForage() === null) window.location.href = 'index.html';
+}
+
 // local forage
 const store = localforage.createInstance({
     name: 'minerva',

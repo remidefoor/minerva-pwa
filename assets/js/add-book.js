@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
-    if (!(await pageIsFunctional())) window.location.href = 'index.html'
+    await redirectWhenLoggedOff();
     document.querySelector('#search-button').addEventListener('click', searchBook);
     document.querySelector('#add-button').addEventListener('click', addBook);
 }

@@ -2,7 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', init);
 
-function init(evt) {
+async function init(evt) {
+    await redirectWhenLoggedIn();
     document.querySelector('form').addEventListener('submit', createUser);
 }
 

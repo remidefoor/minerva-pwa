@@ -8,3 +8,4 @@
 - polish styling
 - search book on enter
 - autofocus
+- display message when user has no books yet

@@ -8,7 +8,8 @@ function registerServiceWorker() {
     }
 }
 
-function init(evt) {
+async function init(evt) {
+    await redirectWhenLoggedIn();
     registerServiceWorker();
     document.querySelector('form').addEventListener('submit', logIn);
 }
