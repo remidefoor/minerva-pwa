@@ -1,7 +1,7 @@
 'use strict';
 
 const config = {
-    minervaBaseUrl: 'http://laravel.minerva.com/api',
+    minervaBaseUrl: 'http://node.minerva.com:3000/api',
     googleBooksApikey: 'AIzaSyDZIHMQYqgI6neWsQbQ5AdbTbfKmk5DuzM',
     googleBooksBaseUrl: 'https://www.googleapis.com/books/v1/volumes?q=isbn:'
 }

@@ -2,10 +2,16 @@
 
 document.addEventListener('DOMContentLoaded', init);
 
-function registerServiceWorker() {
+async function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js')
+        navigator.serviceWorker.register('./sw.js');
+        await navigator.serviceWorker.ready;
+        requestNotificationsRegistration();
     }
+}
+
+function requestNotificationsRegistration() {
+    if ('Notification' in window) Notification.requestPermission();
 }
 
 async function init(evt) {
