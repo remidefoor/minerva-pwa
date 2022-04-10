@@ -75,3 +75,12 @@ self.addEventListener('fetch', evt => {  // TODO refactor with async await
         })
     );
 });
+
+self.addEventListener('push', evt => {
+    const notifcationData = evt.data.json();
+
+    self.registration.showNotification(notifcationData.title, {
+        body: notifcationData.body,
+        icon: './pwa-icons/logo-light-128x128.png'
+    });
+});

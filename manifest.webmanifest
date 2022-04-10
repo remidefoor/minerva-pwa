@@ -8,17 +8,17 @@
     "start_url": "/",
     "icons": [
         {
-            "src": "/pwa-icons/logo-dark-128x128",
+            "src": "./pwa-icons/logo-light-128x128",
             "sizes": "128x128",
             "type": "image/png"
         },
         {
-            "src": "/pwa-icons/logo-dark-256x256",
+            "src": "./pwa-icons/logo-light-256x256",
             "sizes": "256x256",
             "type": "image/png"
         },
         {
-            "src": "/pwa-icons/logo-dark-512x512",
+            "src": "./pwa-icons/logo-light-512x512",
             "sizes": "512x512",
             "type": "image/png"
         }
