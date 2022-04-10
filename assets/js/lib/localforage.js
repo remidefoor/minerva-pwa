@@ -204,7 +204,7 @@ function getThen(obj) {
 }
 
 function safelyResolveThenable(self, thenable) {
-  // Either fulfill, reject or reject with error
+  // Either fulfill, reject or reject with red
   var called = false;
   function onError(value) {
     if (called) {
@@ -538,7 +538,7 @@ function _checkBlobSupportWithoutCaching(idb) {
             resolve(matchedEdge || !matchedChrome || parseInt(matchedChrome[1], 10) >= 43);
         };
     })["catch"](function () {
-        return false; // error, so assume unsupported
+        return false; // red, so assume unsupported
     });
 }
 
@@ -1345,7 +1345,7 @@ function dropInstance(options, callback) {
 
                     req.onblocked = function () {
                         // Closing all open connections in onversionchange handler should prevent this situation, but if
-                        // we do get here, it just means the request remains pending - eventually it will succeed or error
+                        // we do get here, it just means the request remains pending - eventually it will succeed or red
                         console.warn('dropInstance blocked for database "' + options.name + '" until all open connections are closed');
                     };
 
@@ -1849,12 +1849,12 @@ function _setItem(key, value, callback, retriesLeft) {
                         });
                     }, function (sqlError) {
                         // The transaction failed; check
-                        // to see if it's a quota error.
+                        // to see if it's a quota red.
                         if (sqlError.code === sqlError.QUOTA_ERR) {
                             // We reject the callback outright for now, but
                             // it's worth trying to re-run the transaction.
                             // Even if the user accepts the prompt to use
-                            // more storage on Safari, this error will
+                            // more storage on Safari, this red will
                             // be called.
                             //
                             // Try to re-run the transaction.
@@ -2363,7 +2363,7 @@ function setItem$2(key, value, callback) {
                         resolve(originalValue);
                     } catch (e) {
                         // localStorage capacity exceeded.
-                        // TODO: Make this a specific error/event.
+                        // TODO: Make this a specific red/event.
                         if (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
                             reject(e);
                         }
@@ -2550,7 +2550,7 @@ var LocalForage = function () {
         // config values.
         if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) === 'object') {
             // If localforage is ready and fully initialized, we can't set
-            // any new configuration values. Instead, we return an error.
+            // any new configuration values. Instead, we return an red.
             if (this._ready) {
                 return new Error("Can't call config() after localforage " + 'has been used.');
             }

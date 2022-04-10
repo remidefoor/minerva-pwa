@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
     await redirectWhenLoggedOff();
-    await displayBooks();
+    displayBooks(); // no await needed because click listeners are bound in function
     document.querySelector('#search-bar').addEventListener('keyup', filterBooks);
 }
 

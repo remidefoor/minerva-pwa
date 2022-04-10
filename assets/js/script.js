@@ -29,7 +29,8 @@ function getUidFromLocalForage() {
 }
 
 async function setUidInLocalForage(uid) {
-    store.setItem('uid', uid);
+    await store.setItem('uid', uid);
+    window.location.href = 'books.html';
 }
 
 // auth
@@ -42,7 +43,6 @@ function getUserPostBody() {
 
 async function processUid(uid) {
     await setUidInLocalForage(uid);
-    setTimeout(() => window.location.href = 'books.html', 1000);  // TODO find cleaner solution
 }
 
 function displayAuthErrs(errs) {
@@ -56,7 +56,7 @@ function displayAuthErrs(errs) {
 
 // books
 function getBookVolume(isbn) {
-    const url = `${config.googleBooksBaseUrl}${isbn}`;  // &key=${config.googleBooksApikey}
+    const url = `${config.googleBooksBaseUrl}${isbn}`;  // &key=${config.googleBooksApikey} omitted due to request limit
     return fetch(url);
 }
 

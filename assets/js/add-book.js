@@ -26,7 +26,7 @@ function removeBook() {
 }
 
 function removeErr() {
-    const $err = document.querySelector('#error');
+    const $err = document.querySelector('#red');
     if ($err) $err.remove();
 }
 
@@ -36,7 +36,7 @@ function setPage(bookWasFound) {
     if (bookWasFound) {
         document.querySelector('#add-button').classList.remove('hidden');
     } else {
-        document.querySelector('#add-button').classList.add('hidden');        
+        document.querySelector('#add-button').classList.add('hidden');
     }
 }
 

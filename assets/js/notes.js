@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', init);
 async function init(evt) {
     await redirectWhenLoggedOff();
     if (!(await pageIsFunctional())) window.location.href = 'books.html'
-    await displayNotes();
+    await displayNotes(); // await because new notes can only be added after existing notes in the DOM
     document.querySelector('form').addEventListener('submit', addNote);
 }
 
