@@ -17,12 +17,13 @@ h1 {
 }
 
 main {
-  margin: 0 2.5rem;
+  max-width: 21rem;
+  padding: 0 2.5rem;
+  margin: 0 auto;
 }
 
 input {
   width: 100%;
-  max-width: 21rem;
   font-weight: bold;
 }
 
@@ -31,25 +32,21 @@ article {
 }
 
 img {
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem auto;
 }
 
 h2 {
+  text-align: center;
   margin-bottom: 0.4rem;
-
-  &:first-of-type {
-    display: inline-block;
-  }
 }
 
 p {
-  display: inline-block;
+  text-align: center;
   margin-bottom: 1.3rem;
 }
 
 ul {
-  list-style: square inside;
-  margin-left: 1rem;
+  text-align: center;
 }
 
 #back {

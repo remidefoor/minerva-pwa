@@ -26,7 +26,7 @@ function removeBook() {
 }
 
 function removeErr() {
-    const $err = document.querySelector('#red');
+    const $err = document.querySelector('#error');
     if ($err) $err.remove();
 }
 

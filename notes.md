@@ -1,4 +1,7 @@
 # TODO
+
+- center books grid
+
 - delete book
 - delete note
 - profile page

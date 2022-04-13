@@ -38,14 +38,12 @@ main {
 }
 
 p {
-  width: fit-content;
   line-height: 1.4rem;
   text-align: right;
   color: #ffffff;
   background-color: #233148;
   padding: 0.7rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  margin: 0 1rem 1rem 1rem;
 }
 
 img {
