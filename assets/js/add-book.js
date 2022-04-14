@@ -25,7 +25,7 @@ function isValidIsbn(isbn) {
 }
 
 function removeBook() {
-    const $book = document.querySelector('#book');
+    const $book = document.querySelector('#book-icon');
     if ($book) $book.remove();
 }
 

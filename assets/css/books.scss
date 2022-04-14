@@ -4,17 +4,6 @@ main {
   margin: 1.4rem 5rem 6.5rem 5rem;
 }
 
-input {
-  font-weight: bold;
-  width: 70%; // TODO finetune
-  min-width: 14rem;
-  margin: 0 auto 2rem auto;
-
-  &::placeholder {
-    color: variables.$sand-placeholder;
-  }
-}
-
 #books {
   display: grid;
   grid-template-columns: repeat(auto-fit, 14rem);
@@ -32,6 +21,8 @@ h1 {
   text-align: center;
 }
 
+
+
 nav {
   display: flex;
   flex-flow: row nowrap;
@@ -47,6 +38,17 @@ nav {
   border-top: 2px solid variables.$navy-blue;
 }
 
+#search-bar {
+  font-weight: bold;
+  width: 70%; // TODO finetune
+  min-width: 14rem;
+  margin: 0 auto 2rem auto;
+
+  &::placeholder {
+    color: variables.$sand-placeholder;
+  }
+}
+
 #add-book {
   position: fixed;
   bottom: 5rem;
@@ -56,12 +58,32 @@ nav {
   padding: 1.4rem;
 }
 
-#book {
+#profile {
+  margin-top: 3rem;
+}
+
+#email-label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+#email {
+  margin-bottom: 2rem;
+}
+
+#sign-out-button {
+  width: 15rem;
+  font-weight: bold;
+  color: variables.$sand-accent;
+  background-color: variables.$navy-blue;
+}
+
+#book-icon {
   background: url("../media/icons/book.svg") no-repeat center center;
   padding: 1.1rem;
 }
 
-#profile {
+#profile-icon {
   background: url("../media/icons/person.svg") no-repeat center center;
   padding: 0.9rem;
 }
