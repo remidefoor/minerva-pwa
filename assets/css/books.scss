@@ -62,20 +62,12 @@ nav {
   margin-top: 3rem;
 }
 
-#email-label {
-  font-weight: bold;
-  margin-bottom: 0.3rem;
-}
-
-#email {
-  margin-bottom: 2rem;
-}
-
 #sign-out-button {
   width: 15rem;
   font-weight: bold;
   color: variables.$sand-accent;
   background-color: variables.$navy-blue;
+  margin: 0 auto;
 }
 
 #book-icon {

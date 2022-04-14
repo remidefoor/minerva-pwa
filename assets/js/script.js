@@ -30,7 +30,6 @@ function getUidFromLocalForage() {
 
 async function setUidInLocalForage(uid) {
     await store.setItem('uid', uid);
-    window.location.href = 'books.html';
 }
 
 // auth
@@ -43,6 +42,7 @@ function getUserPostBody() {
 
 async function processUid(uid) {
     await setUidInLocalForage(uid);
+    window.location.href = 'books.html';
 }
 
 function displayAuthErrs(errs) {

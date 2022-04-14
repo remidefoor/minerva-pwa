@@ -7,6 +7,9 @@ async function init(evt) {
     requestSubscribeForNotifications();
     displayBooks(); // no await needed because click listeners are bound in function
     document.querySelector('#search-bar').addEventListener('keyup', filterBooks);
+    document.querySelector('#sign-out-button').addEventListener('click', signOut);
+    document.querySelector('#book-icon').addEventListener('click', displayBookPage);
+    document.querySelector('#profile-icon').addEventListener('click', displayProfilePage);
 }
 
 async function pageIsFunctional() {
@@ -78,4 +81,19 @@ function navigateToNotesPage(evt) {
     const isbn = evt.currentTarget.parentElement.dataset.isbn;
     if (localStorage) localStorage.setItem('isbn', isbn);
     window.location.href = 'notes.html';
+}
+
+async function signOut(evt) {
+    await setUidInLocalForage(undefined);
+    window.location.href = 'index.html';
+}
+
+function displayBookPage(evt) {
+    document.querySelector('#book').classList.remove('hidden');
+    document.querySelector('#profile').classList.add('hidden');
+}
+
+function displayProfilePage(evt) {
+    document.querySelector('#book').classList.add('hidden');
+    document.querySelector('#profile').classList.remove('hidden');
 }
