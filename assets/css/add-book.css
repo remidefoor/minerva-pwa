@@ -50,16 +50,16 @@ ul {
   line-height: 3.5rem;
 }
 
-#search-button, #add-button {
+#search-button, #scan-button, #add-button {
   color: #f7f3ea;
   background-color: #08192e;
 }
 
-#isbn {
+#isbn, #search-button, #scanner {
   margin-bottom: 1.5rem;
 }
 
-#search-button, #add-button {
+#scan-button, #add-button {
   margin-bottom: 3rem;
 }
 

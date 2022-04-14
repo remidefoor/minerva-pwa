@@ -1,10 +1,14 @@
 'use strict';
 
+let html5Qrcode;
+
 document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
     await redirectWhenLoggedOff();
+    html5Qrcode = new Html5Qrcode('scanner');
     document.querySelector('#search-button').addEventListener('click', searchBook);
+    document.querySelector('#scan-button').addEventListener('click', startScanning);
     document.querySelector('#add-button').addEventListener('click', addBook);
 }
 
@@ -66,22 +70,22 @@ function getBookNode(volumeInfo) {
 
 function displaySearchResult(volumeInfo) {
     setPage(true);
-    document.querySelector('#search-button').insertAdjacentElement('afterend', getBookNode(volumeInfo));
+    document.querySelector('#scan-button').insertAdjacentElement('afterend', getBookNode(volumeInfo));
 }
 
-function displayErr(errMsg, afterAdd) {
-    const errHtml = `<p id="error">${errMsg}</p>`;
+function displayError(errorMessage, afterAdd) {
+    const errHtml = `<p id="error">${errorMessage}</p>`;
     if (afterAdd) {
         removeErr();
         document.querySelector('#add-button').insertAdjacentHTML('afterend', errHtml);
     } else {
-        document.querySelector('#search-button').insertAdjacentHTML('afterend', errHtml);
+        document.querySelector('#scan-button').insertAdjacentHTML('afterend', errHtml);
     }
 }
 
-function handleSearchErr(errMsg) {
+function handleSearchError(errorMessage) {
     setPage(false);
-    displayErr(errMsg, false);
+    displayError(errorMessage, false);
 }
 
 async function searchBook(evt) {
@@ -91,11 +95,10 @@ async function searchBook(evt) {
         if (bookVolume.totalItems > 0) {
             displaySearchResult(bookVolume.items[0].volumeInfo)
         } else {
-            handleSearchErr('The requested book was not found.');
+            handleSearchError('The requested book was not found.');
         }
     } else {
-        const errMsg = 'The provided ISBN is invalid. A valid ISBN is a number consisting of 10 or 13 digits.';
-        handleSearchErr(errMsg);
+        handleSearchError('The provided ISBN is invalid. A valid ISBN is a number consisting of 10 or 13 digits.');
     }
 }
 
@@ -119,7 +122,46 @@ async function addBook(evt) {
             window.location.href = 'books.html'
         } else if (res.status === 409) {
             const err = await res.json();
-            displayErr(err.message, true);
+            displayError(err.message, true);
         }
+    }
+}
+
+
+// scanner
+
+async function startScanning() {
+    try {
+        const cameraId = (await getCameras())[0].id;
+        await html5Qrcode.start(
+                cameraId,
+                {
+                    fps: 10
+                },
+                processCode,
+                errorMessage => {}
+            );
+    } catch (ex) {
+        handleSearchError(ex);
+    }
+}
+
+async function getCameras() {
+    const cameras = await Html5Qrcode.getCameras();
+    if (!cameras || !cameras.length) throw new Error('The device has no available cameras.');
+    return cameras;
+}
+
+async function processCode(code) {
+    await stopScanning();
+    document.querySelector('#isbn').value = code
+    searchBook();
+}
+
+async function stopScanning() {
+    try {
+        await html5Qrcode.stop();
+    } catch (ex) {
+        handleSearchError(ex);
     }
 }
