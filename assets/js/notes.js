@@ -6,6 +6,8 @@ async function init(evt) {
     await redirectWhenLoggedOff();
     if (!(await pageIsFunctional())) window.location.href = 'books.html'
     await displayNotes(); // await because new notes can only be added after existing notes in the DOM
+    document.querySelector('#more').addEventListener('click', toggleMoreOptions);
+    document.querySelector('#delete-book').addEventListener('click', removeBook);
     document.querySelector('form').addEventListener('submit', addNote);
 }
 
@@ -17,7 +19,7 @@ async function pageIsFunctional() {
 async function displayBookTitle(isbn) {
     const bookVolume = await (await getBookVolume(isbn)).json();
     const volumeInfo = bookVolume.items[0].volumeInfo;
-    const title = `<h1>${volumeInfo.title}</h1>`;
+    const title = `<h1 data-isbn="${isbn}">${volumeInfo.title}</h1>`;
     document.querySelector('#back').insertAdjacentHTML('afterend', title);
 }
 
@@ -68,4 +70,21 @@ async function addNote(evt) {
             $note.value = '';
         }
     }
+}
+
+function toggleMoreOptions(evt) {
+    document.querySelector('#more-options').classList.toggle('hidden');
+}
+
+async function removeBook(evt) {
+    const userId = await getUidFromLocalForage();
+    const isbn = document.querySelector('h1').dataset.isbn;
+    const res = await deleteBook(userId, isbn);
+    if (res.status === 204) {
+        window.location.href = 'books.html';
+    }
+}
+
+function deleteBook(userId, isbn) {
+    return fetch(`${config.minervaBaseUrl}/users/${userId}/books/${isbn}`, { method: 'DELETE' });
 }
