@@ -1,4 +1,7 @@
 header {
+  position: relative;
+}
+header div {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -24,6 +27,17 @@ input:not([type=text]) {
   height: auto;
   background-color: transparent;
   border: none;
+}
+
+#more-options {
+  position: absolute;
+  width: 7rem;
+  max-width: 100%;
+  top: 4rem;
+  right: 1.2rem;
+  background-color: #f7f3ea;
+  border: 1px solid #08192e;
+  padding: 1rem;
 }
 
 main {
@@ -66,6 +80,11 @@ form {
   background: url("../media/icons/more-vert.svg") no-repeat center center;
   padding: 0.4rem;
   margin: 0.8rem;
+}
+
+#remove {
+  background: url("../media/icons/delete.svg") no-repeat center left;
+  padding-left: 1.1rem;
 }
 
 #camera, #add-note {
