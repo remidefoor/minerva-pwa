@@ -2,8 +2,8 @@
 
 const CACHE_NAME = 'minerva-v1';
 
-self.addEventListener('install', evt => {
-    evt.waitUntil(cacheUrls());
+self.addEventListener('install', async evt => {
+    evt.waitUntil(await cacheUrls());
 });
 
 async function cacheUrls() {
@@ -57,6 +57,7 @@ function getCachedUrls() {
         '/assets/media/icons/send.svg',
         '/assets/media/images/blank-book-cover.jpg'
     ];
+
     return [
         ...GENERAL_URLS,
         ...PWA_URLS,
