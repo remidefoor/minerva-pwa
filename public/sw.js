@@ -2,8 +2,8 @@
 
 const CACHE_NAME = 'minerva-v1';
 
-self.addEventListener('install', async evt => {
-    evt.waitUntil(await cacheUrls());
+self.addEventListener('install', evt => {
+    evt.waitUntil(cacheUrls());
 });
 
 async function cacheUrls() {

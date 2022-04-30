@@ -1,6 +1,7 @@
 'use strict';
 
 let html5Qrcode;
+let scanning;
 
 document.addEventListener('DOMContentLoaded', init);
 
@@ -25,7 +26,7 @@ function isValidIsbn(isbn) {
 }
 
 function removeBook() {
-    const $book = document.querySelector('#book-icon');
+    const $book = document.querySelector('#book');
     if ($book) $book.remove();
 }
 
@@ -35,6 +36,7 @@ function removeErr() {
 }
 
 function setPage(bookWasFound) {
+    if (scanning) stopScanning();
     removeErr();
     removeBook();
     if (bookWasFound) {
@@ -131,18 +133,22 @@ async function addBook(evt) {
 // scanner
 
 async function startScanning() {
-    try {
-        const cameraId = (await getCameras())[0].id;
-        await html5Qrcode.start(
-                cameraId,
-                {
-                    fps: 10
-                },
-                processCode,
-                errorMessage => {}
-            );
-    } catch (ex) {
-        handleSearchError(ex);
+    if (!scanning) {
+        try {
+            const cameraId = (await getCameras())[0].id;
+            await html5Qrcode.start(
+                    cameraId,
+                    {
+                        fps: 10
+                    },
+                    processCode,
+                    errorMessage => {}
+                );
+            setPage(false);
+            scanning = true;
+        } catch (ex) {
+            handleSearchError(ex);
+        }
     }
 }
 
@@ -161,6 +167,7 @@ async function processCode(code) {
 async function stopScanning() {
     try {
         await html5Qrcode.stop();
+        scanning = false;
     } catch (ex) {
         handleSearchError(ex);
     }
