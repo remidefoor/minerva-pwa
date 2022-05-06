@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', init);
 
 async function init(evt) {
     await redirectWhenLoggedOff();
-    requestSubscribeForNotifications();
     displayBooks(); // no await needed because click listeners are bound in function
     document.querySelector('#search-bar').addEventListener('keyup', filterBooks);
     document.querySelector('#sign-out-button').addEventListener('click', signOut);
     document.querySelector('#book-icon').addEventListener('click', displayBookPage);
     document.querySelector('#profile-icon').addEventListener('click', displayProfilePage);
+    requestSubscribeForNotifications();
 }
 
 async function pageIsFunctional() {

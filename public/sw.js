@@ -51,6 +51,7 @@ function getCachedUrls() {
         '/assets/media/icons/add-box.svg',
         '/assets/media/icons/arrow-back.svg',
         '/assets/media/icons/book.svg',
+        '/assets/media/icons/delete.svg',
         '/assets/media/icons/more-vert.svg',
         '/assets/media/icons/person.svg',
         '/assets/media/icons/photo-camera.svg',
@@ -70,11 +71,10 @@ function getCachedUrls() {
     ];
 }
 
-self.addEventListener('fetch', evt => {  // TODO refactor with async await
-    evt.respondWith(fetch(evt.request).catch(() => {
-            return caches.open(CACHE_NAME).then(cache => cache.match(evt.request));
-        })
-    );
+self.addEventListener('fetch', evt => {
+    evt.respondWith(fetch(evt.request).catch(error => {
+        return caches.open(CACHE_NAME).then(cache => cache.match(evt.request));
+    }));
 });
 
 self.addEventListener('push', evt => {
