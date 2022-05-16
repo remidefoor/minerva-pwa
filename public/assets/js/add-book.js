@@ -112,7 +112,7 @@ async function postBook() {
             'content-type': 'application/json'
         },
         method: 'POST',
-        body: JSON.stringify({ isbn: $isbn })
+        body: JSON.stringify({ ISBN: $isbn })
     });
 }
 
