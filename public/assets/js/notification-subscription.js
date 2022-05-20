@@ -29,7 +29,7 @@ async function subscribeForNotifcations() {
     postNotificationSubscription(subscription);
 }
 
-function convertBase64StringToUint8Array(base64String) { // TODO read
+function convertBase64StringToUint8Array(base64String) {
     var padding = '='.repeat((4 - base64String.length % 4) % 4);
     var base64 = (base64String + padding)
         .replace(/\-/g, '+')

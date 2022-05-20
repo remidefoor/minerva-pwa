@@ -112,7 +112,7 @@ form {
 #note {
   flex-grow: 1;
   height: 2.9rem;
-  margin-left: 0.3rem;  // TODO remove when displaying camera button
+  margin-left: 0.3rem;  // remove when displaying camera button
 
   &::placeholder {
     color: variables.$sand-placeholder;
